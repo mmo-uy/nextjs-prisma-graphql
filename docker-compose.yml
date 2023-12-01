@@ -11,3 +11,4 @@ services:
       - POSTGRES_PASSWORD=S3cret
       - POSTGRES_USER=mmo
       - POSTGRES_DB=nextjs-prisma
+    restart: always

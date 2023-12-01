@@ -3,18 +3,6 @@ import { gql, useQuery } from "@apollo/client";
 import type { Link } from "@prisma/client";
 import { AwesomeLink } from "../components/AwesomeLink";
 
-// const AllLinksQuery = gql`
-//   query {
-//     links {
-//       id
-//       title
-//       url
-//       description
-//       imageUrl
-//       category
-//     }
-//   }
-// `;
 const AllLinksQuery = gql`
   query allLinksQuery($first: Int, $after: ID) {
     links(first: $first, after: $after) {
@@ -37,12 +25,12 @@ const AllLinksQuery = gql`
   }
 `;
 export default function Home() {
-  // const { data, loading, error } = useQuery(AllLinksQuery);
   const { data, loading, error, fetchMore } = useQuery(AllLinksQuery, {
-    variables: { first: 2 },
+    variables: { first: 3 },
   });
 
   if (loading) return <p>Loading...</p>;
+
   if (error) return <p>Oh no... {error.message}</p>;
 
   const { endCursor, hasNextPage } = data.links.pageInfo;
